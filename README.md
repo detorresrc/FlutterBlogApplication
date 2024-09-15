@@ -1,15 +1,14 @@
 # blog_app_clean_architecture
 
-A new Flutter project.
+The Blog Application is a Flutter-based blog platform that utilizes Clean Architecture, Get It for Dependency Injection, Flutter Bloc for State Management, and Supabase for database and file storage.
 
-## Getting Started
+Features
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- A fully-fledged blog application with user authentication and authorization
+- Clean Architecture design for a scalable and maintainable codebase
+- Dependency Injection using Get It for easy testing and maintenance
+- State Management using Flutter Bloc for efficient and predictable state changes
+- Supabase integration for secure and reliable database and file storage
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
