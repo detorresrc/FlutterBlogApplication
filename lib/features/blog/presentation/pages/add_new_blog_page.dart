@@ -52,7 +52,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
           (context.read<AppUserCubit>().state as AppUserLoggedIn).user.id;
 
       context.read<BlogBloc>().add(
-            BlogUpload(
+            BlogUploadEvent(
               content: blogContentController.text,
               title: blogTitleController.text,
               image: image!,
@@ -81,7 +81,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
             showSnackBar(context, state.message);
             return;
           }
-          if (state is BlogSuccess) {
+          if (state is BlogUploadSuccess) {
             Navigator.pushAndRemoveUntil(
               context,
               BlogPage.route(),
