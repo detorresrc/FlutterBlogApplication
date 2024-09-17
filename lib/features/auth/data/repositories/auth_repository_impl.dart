@@ -7,7 +7,6 @@ import 'package:blog_app_clean_architecture/features/auth/domain/repository/auth
 import 'package:blog_app_clean_architecture/core/common/entities/user.dart';
 
 import 'package:fpdart/fpdart.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource authRemoteDataSource;
@@ -81,8 +80,6 @@ class AuthRepositoryImpl implements AuthRepository {
       }
 
       return Right(await fn());
-    } on sb.AuthException catch (e) {
-      return Left(Failure(e.message));
     } on ServerException catch (e) {
       return Left(Failure(e.message));
     }
