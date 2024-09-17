@@ -1,4 +1,3 @@
-import 'package:blog_app_clean_architecture/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:blog_app_clean_architecture/core/theme/app_pallete.dart';
 import 'package:blog_app_clean_architecture/core/utils/show_snackbar.dart';
 import 'package:blog_app_clean_architecture/features/blog/presentation/bloc/blog_bloc.dart';
@@ -55,26 +54,31 @@ class _BlogPageState extends State<BlogPage> {
           }
           if (state is BlogGetAllBlogsSuccess) {
             return Scrollbar(
-              child: ListView.builder(
-                itemCount: state.blogs.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        BlogViewerPage.route(state.blogs[index]),
-                      );
-                    },
-                    child: BlogCard(
-                      blog: state.blogs[index],
-                      color: index % 3 == 0
-                          ? AppPallete.gradient1
-                          : index % 3 == 1
-                              ? AppPallete.gradient2
-                              : AppPallete.gradient3,
-                    ),
-                  );
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  context.read<BlogBloc>().add(BlogGetAllBlogsEvent());
                 },
+                child: ListView.builder(
+                  itemCount: state.blogs.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          BlogViewerPage.route(state.blogs[index]),
+                        );
+                      },
+                      child: BlogCard(
+                        blog: state.blogs[index],
+                        color: index % 3 == 0
+                            ? AppPallete.gradient1
+                            : index % 3 == 1
+                                ? AppPallete.gradient2
+                                : AppPallete.gradient3,
+                      ),
+                    );
+                  },
+                ),
               ),
             );
           }
